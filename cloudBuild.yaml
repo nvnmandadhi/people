@@ -1,0 +1,10 @@
+steps:
+  - name: gcr.io/cloud-builders/gradle
+    id: build
+    args: ['clean', 'install', 'jib:build', '-Dimage=eu.gcr.io/${PROJECT_ID}/${_IMAGE_NAME}']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'

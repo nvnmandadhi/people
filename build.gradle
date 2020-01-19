@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'com.google.cloud.tools.jib' version '0.9.0'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Hoxton.RELEASE'
+    }
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-gcp-starter-data-datastore'
+//    implementation 'org.springframework.cloud:spring-cloud-gcp-starter-firestore'
+}
+
+test {
+    useJUnitPlatform()
+}
