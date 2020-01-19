@@ -1,10 +1,24 @@
 steps:
-  - name: gcr.io/cloud-builders/gradle
+  - name: 'gcr.io/cloud-builders/gradle'
     id: build
-    args: ['clean', 'install', 'jib:build', '-Dimage=eu.gcr.io/${PROJECT_ID}/${_IMAGE_NAME}']
+    args: ['clean', 'install', 'jib:build', '-Dimage=gcr.io/${PROJECT_ID}/${_IMAGE_NAME-$COMMIT_SHA}']
 
   - name: 'gcr.io/cloud-builders/kubectl'
-    args: ['apply']
+    id: 'deploy k8s'
+    args: ['apply', '-f', '.ci/k8s']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'set image'
+    args: [
+      'set',
+      'image',
+      'deployment',
+      'people',
+      'people=gcr.io/${PROJECT_ID}/${_IMAGE_NAME-$COMMIT_SHA'
+    ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'

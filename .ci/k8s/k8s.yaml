@@ -1,0 +1,44 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: people
+  labels:
+    app: people
+spec:
+  selector:
+    matchLabels:
+      app: people
+  template:
+    metadata:
+      labels:
+        app: people
+    spec:
+      containers:
+        - name: people
+          image: gcr.io/$PROJECT_ID/people:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/tmp/datastore-user-key.json"
+              name: datastore-config
+          env:
+            - name: DATA_STORE_USER_KEY
+              value: "/tmp/datastore-user-key.json"
+      volumes:
+        - name: datastore-config
+          configMap:
+            name: datastore-config
+            items:
+              - key: key
+                path: "/tmp/datastore-user-key.json"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: people-service
+spec:
+  selector:
+    app: people
+  ports:
+    - port: 8080
+      targetPort: 8080
