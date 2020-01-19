@@ -1,7 +1,7 @@
 steps:
-  - name: 'gcr.io/cloud-builders/gradle'
+  - name: 'gcr.io/cloud-builders/gradle:5.6.2-jdk-8'
     id: 'build'
-    args: ['clean', 'jib:build', '-Dimage=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA']
+    args: ['clean', 'build', 'jib', '--image=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA']
 
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'deploy k8s'
