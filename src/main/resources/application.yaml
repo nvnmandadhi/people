@@ -5,4 +5,4 @@ spring:
         enabled: true
         project-id: test-project
         credentials:
-          location: ${DATA_STORE_USER_KEY:"datastore-user-key.json"}
+          location: ${DATA_STORE_USER_KEY:"/tmp/datastore-user-key.json"}

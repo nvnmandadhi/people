@@ -27,8 +27,8 @@ test {
     useJUnitPlatform()
 }
 
-jib {
-    from {
-        image = 'gcr.io/distroless/java:debug'
-    }
-}
+//jib {
+//    from {
+//        image = 'gcr.io/distroless/java:debug'
+//    }
+//}

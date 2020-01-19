@@ -19,18 +19,15 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
-            - mountPath: "/tmp/datastore-user-key.json"
-              name: datastore-config
+            - name: datastore-config
+              mountPath: /tmp/datastore-user-key.json
           env:
             - name: DATA_STORE_USER_KEY
               value: "/tmp/datastore-user-key.json"
       volumes:
         - name: datastore-config
           configMap:
-            name: datastore-config
-            items:
-              - key: key
-                path: "/tmp/datastore-user-key.json"
+            name: datastore-user
 ---
 kind: Service
 apiVersion: v1
