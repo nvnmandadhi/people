@@ -8,7 +8,7 @@ deploy:
       - ci/k8s/k8s.yaml
 build:
   artifacts:
-    - image: gcr.io/${PROJECT_ID}/people
+    - image: gcr.io/test-project/people
       jib: {}
   googleCloudBuild:
-    projectId: ${PROJECT_ID}
+    projectId: test-project
