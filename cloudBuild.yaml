@@ -1,7 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/gradle'
     id: 'build'
-    args: ['clean', 'jib:build', '-Dimage=gcr.io/${PROJECT_ID}/${people-$COMMIT_SHA}']
+    args: ['clean', 'jib:build', '-Dimage=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA']
 
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'deploy k8s'
@@ -17,7 +17,7 @@ steps:
       'image',
       'deployment',
       'people',
-      'people=gcr.io/${PROJECT_ID}/${people-$COMMIT_SHA'
+      'people=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA'
     ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
