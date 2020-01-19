@@ -29,5 +29,7 @@ test {
 }
 
 jib {
-    from.image = 'gcr.io/distroless/java:debug'
+    from {
+        image = 'gcr.io/distroless/java:debug'
+    }
 }
