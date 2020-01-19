@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2alpha2
+kind: Config
+metadata:
+  name: people
+deploy:
+  kubectl:
+    manifests:
+      - ci/k8s/k8s.yaml
+build:
+  artifacts:
+    - image: gcr.io/${PROJECT_ID}/people
+      jib: {}
+  googleCloudBuild:
+    projectId: ${PROJECT_ID}
