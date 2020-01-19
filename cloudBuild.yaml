@@ -8,7 +8,7 @@ steps:
     args: ['apply', '-f', '.ci/k8s']
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
 
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'set image'
@@ -21,7 +21,7 @@ steps:
     ]
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
 
 #  - name: "gcr.io/k8s-skaffold/skaffold"
 #    args:
