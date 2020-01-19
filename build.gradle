@@ -28,6 +28,6 @@ test {
 }
 
 jib {
-    to.image="gcr.io/test-project-265502/people"
+    from.image="gcr.io/distroless/java:debug"
 }
 
