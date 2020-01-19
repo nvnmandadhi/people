@@ -17,9 +17,9 @@ steps:
         "container",
         "clusters",
         "get-credentials",
-        "${CLOUDSDK_CONTAINER_CLUSTER}",
+        "kube-cluster",
         "--region",
-        "${CLOUDSDK_COMPUTE_ZONE}",
+        "us-central1-a",
         "--project",
         "${PROJECT_ID}",
       ]
