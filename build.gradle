@@ -1,8 +1,10 @@
 plugins {
     id 'java'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-//    id 'com.google.cloud.tools.jib' version '1.8.0'
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'com.google.cloud.tools.jib' version '1.8.0'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
@@ -28,8 +30,6 @@ test {
 }
 
 jib {
-    from{
-        image = "gcr.io/distroless/java:debug"
-    }
+    from.image = "gcr.io/distroless/java:debug"
 }
 
