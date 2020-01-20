@@ -10,18 +10,18 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
 
-  - name: 'gcr.io/cloud-builders/kubectl'
-    id: 'set image'
-    args: [
-      'set',
-      'image',
-      'deployment',
-      'people',
-      'people=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA'
-    ]
-    env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
+#  - name: 'gcr.io/cloud-builders/kubectl'
+#    id: 'set image'
+#    args: [
+#      'set',
+#      'image',
+#      'deployment',
+#      'people',
+#      'people=gcr.io/${PROJECT_ID}/people-$COMMIT_SHA'
+#    ]
+#    env:
+#      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+#      - 'CLOUDSDK_CONTAINER_CLUSTER=kube-cluster'
 
 #  - name: "gcr.io/k8s-skaffold/skaffold"
 #    args:
